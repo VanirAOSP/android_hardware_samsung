@@ -1,4 +1,4 @@
-# Copyright (C) 2012 The Android Open Source Project
+# Copyright (C) 2013 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,33 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-SAM_ROOT := $(call my-dir)
-
-# Exynos 4
-ifeq ($(TARGET_BOARD_PLATFORM),exynos4)
-ifeq ($(TARGET_SOC),exynos4210)
-include $(SAM_ROOT)/exynos4210.mk
-endif
-ifeq ($(TARGET_SOC),exynos4x12)
-include $(SAM_ROOT)/exynos4x12.mk
-endif
-endif
-
-# Exynos 3
-ifeq ($(TARGET_BOARD_PLATFORM),s5pc110)
-include $(SAM_ROOT)/s5pc110.mk
-endif
-
-# Samsung U8500
 ifeq ($(TARGET_SOC),u8500)
-include $(SAM_ROOT)/u8500.mk
-endif
 
-# Wifi
-ifeq ($(BOARD_HAVE_SAMSUNG_WIFI),true)
-include $(SAM_ROOT)/macloader/Android.mk
-endif
+include $(SAM_ROOT)/u8500/ux500/Android.mk
 
-ifeq ($(BOARD_VENDOR),samsung)
-include $(SAM_ROOT)/ril/Android.mk
 endif
