@@ -16,8 +16,8 @@
 
 ifeq ($(TARGET_SOC),u8500)
 
-# Audio, display , media , power ,and light HAL
-u8500_dirs := display libasound lights media power
+# Audio, display , media ,and light HAL
+u8500_dirs := display libasound lights media
 
 include $(call all-named-subdir-makefiles,$(u8500_dirs))
 
