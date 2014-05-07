@@ -19,6 +19,11 @@ LOCAL_PATH:= $(call my-dir)
 # hw/<POWERS_HARDWARE_MODULE_ID>.<ro.hardware>.so
 include $(CLEAR_VARS)
 
+# Make backlight notification optional
+ifeq ($(BOARD_USE_BLN),true)
+LOCAL_CFLAGS += -DUSE_BLN
+endif
+
 LOCAL_SRC_FILES := lights.c
 LOCAL_PRELINK_MODULE := false
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
