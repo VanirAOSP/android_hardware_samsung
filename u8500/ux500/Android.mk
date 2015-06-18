@@ -1,24 +1,26 @@
-#
-# Copyright (C) 2013 The Android Open Source Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+# Audio
+PRODUCT_PACKAGES += \
+   libasound
+$(call inherit-product, hardware/u8500/ux500/audio/libasound/alsa-lib-products.mk)
 
-ifeq ($(TARGET_SOC),u8500)
+# STE Display 
+PRODUCT_PACKAGES += \
+   lights.montblanc \
+   gralloc.montblanc \
+   hwcomposer.montblanc \
+   copybit.montblanc \
+   libblt_hw
 
-# Audio, display , media ,and light HAL
-u8500_dirs := display libasound lights media
+# STE Media
+PRODUCT_PACKAGES += \
+   libomxil-bellagio \
+   libstelpcutils
 
-include $(call all-named-subdir-makefiles,$(u8500_dirs))
+# WLAN
+PRODUCT_PACKAGES += \
+   iw
 
-endif
+# External
+PRODUCT_PACKAGES += \
+   memtrack.montblanc
+BOARD_HAL_STATIC_LIBRARIES := libhealthd.montblanc

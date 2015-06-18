@@ -91,9 +91,9 @@ typedef enum OMX_AUDIO_CODINGTYPE {
     OMX_AUDIO_CodingMIDI,        /**< Any variant of MIDI encoded data */
     OMX_AUDIO_CodingKhronosExtensions = 0x6F000000, /**< Reserved region for introducing Khronos Standard Extensions */ 
     OMX_AUDIO_CodingVendorStartUnused = 0x7F000000, /**< Reserved region for introducing Vendor Extensions */
-    OMX_AUDIO_CodingMP2,         /**< Any variant of MP2 encoded data */
+	OMX_AUDIO_CodingMP2,         /**< Any variant of MP2 encoded data */
     OMX_AUDIO_CodingAC3,         /**< Any variant of AC3 encoded data */
-    OMX_AUDIO_CodingAPE,         /**< Any variant of APE encoded data */
+	OMX_AUDIO_CodingAPE,         /**< Any variant of APE encoded data */
     OMX_AUDIO_CodingDTS,         /**< Any variant of DTS encoded data */
     OMX_AUDIO_CodingFFMPEG,      /**< Any variant of FFMPEG encoded data */
     OMX_AUDIO_CodingMax = 0x7FFFFFFF
