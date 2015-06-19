@@ -12,8 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifeq ($(TARGET_SOC),u8500)
+LOCAL_PATH := $(call my-dir)
 
-include $(SAM_ROOT)/u8500/Android.mk
+include $(CLEAR_VARS)
 
+ifeq ($(TARGET_DEVICE),golden)
+	LOCAL_CFLAGS += -DTARGET_STE_GOLDEN
 endif
+
+LOCAL_SRC_FILES := healthd_board_montblanc.cpp
+LOCAL_MODULE := libhealthd.$(TARGET_BOARD_PLATFORM)
+LOCAL_C_INCLUDES := system/core/healthd
+include $(BUILD_STATIC_LIBRARY)

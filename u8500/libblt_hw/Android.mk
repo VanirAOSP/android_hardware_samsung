@@ -1,4 +1,4 @@
-# Copyright (C) 2013 The Android Open Source Project
+# Copyright (C) 2008 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,9 +11,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+MULTIMEDIA_PATH := hardware/samsung/u8500/multimedia
+LOCAL_PATH:= $(call my-dir)
+include $(CLEAR_VARS)
 
-ifeq ($(TARGET_SOC),u8500)
+LOCAL_PRELINK_MODULE := false
+LOCAL_SRC_FILES := src/blt_b2r2.c
+LOCAL_C_INCLUDES += $(MULTIMEDIA_PATH)/linux/b2r2lib/include
+LOCAL_SHARED_LIBRARIES := liblog
+LOCAL_MODULE := libblt_hw
+LOCAL_MODULE_TAGS := optional
 
-include $(SAM_ROOT)/u8500/Android.mk
-
-endif
+include $(BUILD_SHARED_LIBRARY)
