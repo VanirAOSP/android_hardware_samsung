@@ -12,8 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifeq ($(TARGET_SOC),u8500)
+LOCAL_PATH := $(call my-dir)
 
-include $(SAM_ROOT)/u8500/Android.mk
-
-endif
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := memtrack.c kgsl.c
+LOCAL_MODULE := memtrack.montblanc
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
+LOCAL_C_INCLUDES += hardware/libhardware/include
+LOCAL_SHARED_LIBRARIES := liblog
+include $(BUILD_SHARED_LIBRARY)
