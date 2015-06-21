@@ -1,3 +1,4 @@
+#
 # Copyright (C) 2013 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,9 +12,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
 ifeq ($(TARGET_SOC),u8500)
 
-include $(SAM_ROOT)/u8500/ux500/Android.mk
+# Audio, display , media ,and light HAL
+u8500_dirs := display libasound lights media
+
+include $(call all-named-subdir-makefiles,$(u8500_dirs))
 
 endif
