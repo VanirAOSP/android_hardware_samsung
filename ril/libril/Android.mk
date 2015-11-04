@@ -7,7 +7,9 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES:= \
     ril.cpp \
-    ril_event.cpp
+    ril_event.cpp\
+    RilSocket.cpp \
+    RilSapSocket.cpp \
 
 LOCAL_SHARED_LIBRARIES := \
     liblog \
@@ -15,7 +17,10 @@ LOCAL_SHARED_LIBRARIES := \
     libbinder \
     libcutils \
     libhardware_legacy \
-    librilutils
+    librilutils \
+
+LOCAL_STATIC_LIBRARIES := \
+    libprotobuf-c-nano-enable_malloc \
 
 ifneq ($(filter xmm6262 xmm6360,$(BOARD_MODEM_TYPE)),)
 LOCAL_CFLAGS := -DMODEM_TYPE_XMM6262
@@ -30,10 +35,15 @@ ifeq ($(BOARD_MODEM_TYPE),m7450)
 LOCAL_CFLAGS := -DMODEM_TYPE_M7450
 endif
 
+LOCAL_C_INCLUDES += $(TARGET_OUT_HEADER)/librilutils
+LOCAL_C_INCLUDES += external/nanopb-c
+
 LOCAL_MODULE:= libril
 
-include $(BUILD_SHARED_LIBRARY)
+LOCAL_COPY_HEADERS_TO := libril
+LOCAL_COPY_HEADERS := ril_ex.h
 
+include $(BUILD_SHARED_LIBRARY)
 
 # For RdoServD which needs a static library
 # =========================================
@@ -46,7 +56,8 @@ LOCAL_SRC_FILES:= \
 LOCAL_STATIC_LIBRARIES := \
     libutils_static \
     libcutils \
-    librilutils_static
+    librilutils_static \
+    libprotobuf-c-nano-enable_malloc
 
 ifneq ($(filter xmm6262 xmm6360,$(BOARD_MODEM_TYPE)),)
 LOCAL_CFLAGS := -DMODEM_TYPE_XMM6262

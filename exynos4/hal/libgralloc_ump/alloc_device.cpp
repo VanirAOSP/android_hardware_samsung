@@ -36,6 +36,7 @@
 #include <hardware/hardware.h>
 #include <hardware/gralloc.h>
 #include "sec_format.h"
+#include "graphics.h"
 
 #include "gralloc_priv.h"
 #include "gralloc_helper.h"
@@ -56,7 +57,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
-#include <pixelflinger/format.h>
+#include "format.h"
 
 #include <linux/videodev2.h>
 #include "s5p_fimc.h"
