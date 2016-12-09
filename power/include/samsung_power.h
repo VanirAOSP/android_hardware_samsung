@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef SAMSUNG_LIGHTS_H
-#define SAMSUNG_LIGHTS_H
+#ifndef SAMSUNG_POWER_H
+#define SAMSUNG_POWER_H
 
 /*
  * Board specific nodes
@@ -24,9 +24,13 @@
  * symlink to the locations given here, or override this header in your
  * device tree.
  */
-#define PANEL_BRIGHTNESS_NODE "/sys/class/backlight/panel/brightness"
-#define PANEL_MAX_BRIGHTNESS_NODE "/sys/class/backlight/panel/max_brightness"
-#define BUTTON_BRIGHTNESS_NODE "/sys/class/sec/sec_touchkey/brightness"
-#define LED_BLINK_NODE "/sys/class/sec/led/led_blink"
+#define BOOSTPULSE_PATH "/sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse"
 
-#endif // SAMSUNG_LIGHTS_H
+#define IO_IS_BUSY_PATH "/sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy"
+
+#define CPU0_HISPEED_FREQ_PATH "/sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq"
+#define CPU0_MAX_FREQ_PATH "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq"
+#define CPU4_HISPEED_FREQ_PATH "/sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq"
+#define CPU4_MAX_FREQ_PATH "/sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq"
+
+#endif // SAMSUNG_POWER_H
