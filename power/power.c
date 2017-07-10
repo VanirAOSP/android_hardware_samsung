@@ -99,7 +99,12 @@ static int sysfs_read(char *path, char *s, int num_bytes)
 
         ret = -1;
     } else {
-        s[len] = '\0';
+        // do not store newlines, but terminate the string instead
+        if (s[len-1] == '\n') {
+            s[len-1] = '\0';
+        } else {
+            s[len] = '\0';
+        }
     }
 
     close(fd);
@@ -349,6 +354,17 @@ static void samsung_power_init(struct power_module *module)
     samsung_pwr->touchscreen_power_path = NULL;
     samsung_pwr->touchkey_power_path = NULL;
     init_touch_input_power_path(samsung_pwr);
+
+    ALOGI("Initialized settings:");
+    ALOGI("max_freqs: cluster[0]: %s, cluster[1]: %s", samsung_pwr->cpu0_max_freq,
+            samsung_pwr->cpu4_max_freq);
+    ALOGI("hispeed_freqs: cluster[0]: %s, cluster[1]: %s", samsung_pwr->cpu0_hispeed_freq,
+            samsung_pwr->cpu4_hispeed_freq);
+    ALOGI("boostpulse_fd: %d", samsung_pwr->boostpulse_fd);
+    ALOGI("touchscreen_power_path: %s",
+            samsung_pwr->touchscreen_power_path ? samsung_pwr->touchscreen_power_path : "NULL");
+    ALOGI("touchkey_power_path: %s",
+            samsung_pwr->touchkey_power_path ? samsung_pwr->touchkey_power_path : "NULL");
 }
 
 /**********************************************************
